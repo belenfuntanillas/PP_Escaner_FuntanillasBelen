@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "ihhp1vOwbkw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\BELU\\source\\repos\\PP_Escaner_FuntanillasBelen\\Entidades\\Entidades.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BELU\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\BELU\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\BELU\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
