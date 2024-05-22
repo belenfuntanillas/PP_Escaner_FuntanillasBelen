@@ -29,12 +29,19 @@ namespace Entidades {
         }
 
         public static bool operator ==(Escaner e, Documento d) {
-            foreach(Documento doc in e.listaDocumentos) {
-                if(doc == d) {
-                    return true;
+           if(d is Libro && e.tipo == ETipoDoc.libro){
+                foreach (Libro doc in e.listaDocumentos) {
+                    if (doc == (Libro) d){
+                        return true;
+                    }
+                }
+            } else if (d is Mapa && e.tipo == ETipoDoc.mapa) {
+                foreach (Mapa doc in e.listaDocumentos) {
+                    if (doc == (Mapa) d) {
+                        return true;
+                    }
                 }
             }
-
             return false;
         }   
 
