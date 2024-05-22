@@ -9,7 +9,7 @@ namespace Entidades {
         private int ancho;
         private int alto;
 
-        public Mapa(string titulo, string autor, int anio, string barcode, int ancho, int alto) : base(titulo, autor, anio, "Nulo", barcode) {
+        public Mapa(string titulo, string autor, int anio, string numNormalizado,string barcode, int ancho, int alto) : base(titulo, autor, anio, numNormalizado, barcode) {
             this.ancho = ancho;
             this.alto = alto;
         }

@@ -5,7 +5,7 @@ namespace Entidades {
         private int anio;
         private string autor;
         private string barcode;
-        private EPaso estado;
+        private Paso estado;
         private string numNormalizado;
         private string titulo;
 
@@ -15,13 +15,13 @@ namespace Entidades {
             this.autor = autor;
             this.barcode = barcode;
             this.numNormalizado = numNormalizado;
-            this.estado = EPaso.Inicio;
+            this.estado = Paso.Inicio;
         }
 
         public int Anio { get => anio; }
         public string Autor { get => autor; }
         public string Barcode { get => barcode; }
-        public EPaso Estado { get => estado; }
+        public Paso Estado { get => estado; }
         protected string NumNormalizado { get => numNormalizado; }
         public string Titulo { get => titulo; }
 
@@ -31,11 +31,11 @@ namespace Entidades {
         /// </summary>
         /// <returns>true si se avanzo el estado, false si el estado ya era Terminado</returns>
         public bool AvanzarEstado() {
-            if(this.estado == EPaso.Terminado) {
+            if(this.estado == Paso.Terminado) {
                 return false;
             }
 
-            this.estado = (EPaso) (((int)this.estado) + 1);
+            this.estado = (Paso) (((int)this.estado) + 1);
 
             return true;
         }
@@ -51,7 +51,13 @@ namespace Entidades {
 
             return sb.ToString();
         }
+
+        public enum Paso {
+            Inicio,
+            Distribuido,
+            EnEscaner,
+            EnRevision,
+            Terminado
+        }
     }
-
-
 }

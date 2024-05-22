@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Documento;
 
 namespace Entidades {
     public static class Informes {
@@ -14,7 +15,7 @@ namespace Entidades {
         /// <param name="extension">Parametro de tipo out donde se va a guardar la extension</param>
         /// <param name="cantidad">Parametro de tipo out donde se va a guardar la cantidad</param>
         /// <param name="resumen">Parametro de tipo out donde se va a guardar el resumen</param>
-        private static void MostrarDocumentosPorEstado(Escaner e, EPaso estado, out int extension, out int cantidad, out string resumen) {
+        private static void MostrarDocumentosPorEstado(Escaner e, Paso estado, out int extension, out int cantidad, out string resumen) {
             extension = 0;
             cantidad = 0;
             resumen = "";
@@ -22,10 +23,10 @@ namespace Entidades {
             foreach (Documento doc in e.ListaDocumentos) {
                 if (doc.Estado == estado) {
                     switch(e.Tipo) {
-                        case ETipoDoc.libro:
+                        case Escaner.TipoDoc.libro:
                             extension += ((Libro)doc).NumPaginas;
                             break;
-                        case ETipoDoc.mapa:
+                        case Escaner.TipoDoc.mapa:
                             extension += ((Mapa)doc).Superficie;
                             break;
                     }
@@ -44,7 +45,7 @@ namespace Entidades {
         /// <param name="cantidad">Parametro de tipo out donde se va a guardar la cantidad</param>
         /// <param name="resumen">Parametro de tipo out donde se va a guardar el resumen</param>
         public static void MostrarDistribuidos(Escaner e, out int extension, out int cantidad, out string resumen) {
-            MostrarDocumentosPorEstado(e, EPaso.Distribuido, out extension, out cantidad, out resumen);
+            MostrarDocumentosPorEstado(e, Paso.Distribuido, out extension, out cantidad, out resumen);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Entidades {
         /// <param name="cantidad">Parametro de tipo out donde se va a guardar la cantidad</param>
         /// <param name="resumen">Parametro de tipo out donde se va a guardar el resumen</param>
         public static void MostrarEnEscaner(Escaner e, out int extension, out int cantidad, out string resumen) {
-            MostrarDocumentosPorEstado(e, EPaso.EnEscaner, out extension, out cantidad, out resumen);
+            MostrarDocumentosPorEstado(e, Paso.EnEscaner, out extension, out cantidad, out resumen);
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace Entidades {
         /// <param name="cantidad">Parametro de tipo out donde se va a guardar la cantidad</param>
         /// <param name="resumen">Parametro de tipo out donde se va a guardar el resumen</param>
         public static void MostrarEnRevision(Escaner e, out int extension, out int cantidad, out string resumen) {
-            MostrarDocumentosPorEstado(e, EPaso.EnRevision, out extension, out cantidad, out resumen);
+            MostrarDocumentosPorEstado(e, Paso.EnRevision, out extension, out cantidad, out resumen);
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Entidades {
         /// <param name="cantidad">Parametro de tipo out donde se va a guardar la cantidad</param>
         /// <param name="resumen">Parametro de tipo out donde se va a guardar el resumen</param>
         public static void MostrarTerminados(Escaner e, out int extension, out int cantidad, out string resumen) {
-            MostrarDocumentosPorEstado(e, EPaso.Terminado, out extension, out cantidad, out resumen);
+            MostrarDocumentosPorEstado(e, Paso.Terminado, out extension, out cantidad, out resumen);
         }
     }
 }

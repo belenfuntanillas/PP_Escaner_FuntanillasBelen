@@ -7,50 +7,51 @@ using System.Threading.Tasks;
 namespace Entidades {
     public class Escaner {
         private List<Documento> listaDocumentos;
-        private EDepartamento locacion;
+        private Departamento locacion;
         private string marca;
-        private ETipoDoc tipo;
+        private TipoDoc tipo;
 
         public List<Documento> ListaDocumentos { get => listaDocumentos; }
-        public EDepartamento Locacion { get => locacion; }
+        public Departamento Locacion { get => locacion; }
         public string Marca { get => marca; }
-        public ETipoDoc Tipo { get => tipo; }
+        public TipoDoc Tipo { get => tipo; }
 
-        public Escaner(string marca, ETipoDoc tipo) {
+        public Escaner(string marca, TipoDoc tipo) {
             this.listaDocumentos = new List<Documento>();
             this.marca = marca;
             this.tipo = tipo;
 
-            if(tipo == ETipoDoc.libro) {
-                this.locacion = EDepartamento.procesosTecnicos;
+            if(tipo == TipoDoc.libro) {
+                this.locacion = Departamento.procesosTecnicos;
             } else {
-                this.locacion = EDepartamento.mapoteca;
+                this.locacion = Departamento.mapoteca;
             }
         }
 
         public static bool operator ==(Escaner e, Documento d) {
-           if(d is Libro && e.tipo == ETipoDoc.libro){
+            if(d is Libro && e.tipo == TipoDoc.libro) {
                 foreach (Libro doc in e.listaDocumentos) {
-                    if (doc == (Libro) d){
+                    if (doc == (Libro) d) {
                         return true;
                     }
                 }
-            } else if (d is Mapa && e.tipo == ETipoDoc.mapa) {
+            } else if(d is Mapa && e.tipo == TipoDoc.mapa) {
                 foreach (Mapa doc in e.listaDocumentos) {
                     if (doc == (Mapa) d) {
                         return true;
                     }
                 }
             }
+
             return false;
-        }   
+        }
 
         public static bool operator !=(Escaner e, Documento d) {
             return !(e == d);
         }
             
         public static bool operator +(Escaner e, Documento d) {
-            if(e != d && d.Estado == EPaso.Inicio && ((d is Libro && e.tipo == ETipoDoc.libro) || (d is Mapa && e.tipo == ETipoDoc.mapa))) {
+            if(e != d && d.Estado == Documento.Paso.Inicio && ((d is Libro && e.tipo == TipoDoc.libro) || (d is Mapa && e.tipo == TipoDoc.mapa))) {
                 d.AvanzarEstado();
                 e.listaDocumentos.Add(d);
                 return true;
@@ -73,6 +74,15 @@ namespace Entidades {
             return false;
         }
 
+        public enum TipoDoc {
+            libro,
+            mapa
+        }
 
+        public enum Departamento {
+            nulo,
+            mapoteca,
+            procesosTecnicos,
+        }
     }
 }
